@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+} 
+
+.binaryBackground {
+    background-image: url("src/assets/Images/binaryPatt.jpg");
+}
+/* 
+#particle-canvas {
+  width: 100%;
+  height: 100%;
+} */
+
+/* #particles-js{
+    background-image: url('src/assets/Images/binaryPatt.jpg');
+} */

@@ -2,12 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>AskianoorUI</title>
+  <title>Ali Kianoor - Personal WebSite</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
-  <app-root></app-root>
+<body>  
+    <div id="particles-js" class="h-100 mh-100">
+        <app-root>
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border text-success" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </app-root>
+    </div>
+
+    <script src="./assets/Scripts/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', './assets/Scripts/particles.json',
+        function(){
+            console.log('particles.json loaded...');
+            let el = document.querySelector(".particles-js-canvas-el"); 
+            el.setAttribute("height", "100%")
+        })
+    </script>
 </body>
 </html>

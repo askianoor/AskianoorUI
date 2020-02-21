@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "AskianoorUI": {
+    "askianoorui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/AskianoorUI",
+            "outputPath": "dist/askianoorui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,9 +24,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/Css/animate.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AskianoorUI:build"
+            "browserTarget": "askianoorui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AskianoorUI:build:production"
+              "browserTarget": "askianoorui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AskianoorUI:build"
+            "browserTarget": "askianoorui:build"
           }
         },
         "test": {
@@ -110,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "AskianoorUI:serve"
+            "devServerTarget": "askianoorui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "AskianoorUI:serve:production"
+              "devServerTarget": "askianoorui:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "AskianoorUI"
+  "defaultProject": "askianoorui"
 }
