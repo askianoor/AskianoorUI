@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { SlideshowComponent } from './_Components/slideshow/slideshow.component'
 import { ExperienceComponent } from './_Components/experience/experience.component';
 import { EducationComponent } from './_Components/education/education.component';
 import { ContactUsComponent } from './_Components/contact-us/contact-us.component';
+import { LoginComponent } from './_Components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { ContactUsComponent } from './_Components/contact-us/contact-us.componen
     SlideshowComponent,
     ExperienceComponent,
     EducationComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
