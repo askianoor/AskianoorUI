@@ -8,6 +8,13 @@ body {
   overflow: hidden;
 } 
 
+body{
+  background-image: url('src/assets/Images/BackLogin.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
 .binaryBackground {
     background-image: url("src/assets/Images/binaryPatt.jpg");
 }

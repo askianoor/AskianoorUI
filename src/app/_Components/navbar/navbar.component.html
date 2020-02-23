@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent animated bounce delay-2s">
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent animated bounce delay-2s">
     <a class="navbar-brand" href="#">
         <img src="" width="30" height="30" class="d-inline-block align-top" alt="">
         Ali Kianoor
@@ -18,6 +18,8 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/About']" >About Me</a>
         </li>
+
+
         <!-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
@@ -31,8 +33,9 @@
         </li> -->
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        <a class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/Login']">Login</a>
+        <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button> -->
       </form>
     </div>
   </nav>

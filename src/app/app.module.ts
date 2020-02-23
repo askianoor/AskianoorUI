@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './_Components/homepage/homepage.component';
 import { AboutMeComponent } from './_Components/about-me/about-me.component';
@@ -14,6 +15,8 @@ import { ExperienceComponent } from './_Components/experience/experience.compone
 import { EducationComponent } from './_Components/education/education.component';
 import { ContactUsComponent } from './_Components/contact-us/contact-us.component';
 import { LoginComponent } from './_Components/login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,7 @@ import { LoginComponent } from './_Components/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFontAwesomeModule
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
