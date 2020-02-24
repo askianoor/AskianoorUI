@@ -15,6 +15,7 @@ import { ExperienceComponent } from './_Components/experience/experience.compone
 import { EducationComponent } from './_Components/education/education.component';
 import { ContactUsComponent } from './_Components/contact-us/contact-us.component';
 import { LoginComponent } from './_Components/login/login.component';
+import { GlitchComponent } from './_Components/glitch/glitch.component';
 
 
 
@@ -30,7 +31,8 @@ import { LoginComponent } from './_Components/login/login.component';
     ExperienceComponent,
     EducationComponent,
     ContactUsComponent,
-    LoginComponent
+    LoginComponent,
+    GlitchComponent
   ],
   imports: [
     BrowserModule,
