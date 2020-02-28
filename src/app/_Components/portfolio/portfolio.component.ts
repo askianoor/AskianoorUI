@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PortfolioComponent implements OnInit {
 
+  PortfolioTitle = 'Portfolio';
+  PortfolioDesc = 'Check out a few of my projects!';
+
   constructor() { }
 
   ngOnInit() {

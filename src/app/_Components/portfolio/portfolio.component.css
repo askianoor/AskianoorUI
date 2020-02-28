@@ -1,19 +1,13 @@
-body {
-	margin-top: 60px;
-	font-size: 14px;
-	font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
-	background-color: #E5E9ED;
+.PortfolioCard {
+    max-width: 350px;
+    min-width: 300px;
 }
-.btn:hover,
-.btn:focus,
-.btn:active{
-    outline: 0 !important;
-}
+
 /* entire container, keeps perspective */
 .card-container {
-	  -webkit-perspective: 800px;
-   -moz-perspective: 800px;
-     -o-perspective: 800px;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
         perspective: 800px;
         margin-bottom: 30px;
 }
@@ -209,7 +203,6 @@ body {
     font-size: 17px;
     color: #999;
     text-transform: uppercase;
-    margin: 0;
 }
 .space-30{
 	height: 30px;

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './_Components/homepage/homepage.component';
@@ -38,7 +40,10 @@ import { RegisterFormComponent } from './_Components/register-form/register-form
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FontAwesomeModule
   ],
   providers: [],

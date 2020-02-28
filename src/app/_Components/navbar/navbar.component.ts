@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  menu = [
+    { id: 0, name: 'Home', path: '/home' },
+    { id: 1, name: 'About Me', path: '/About'  },
+    { id: 2, name: 'Portfolio', path: '/Portfolio'  }
+  ];
+
   constructor() { }
 
   ngOnInit() {
