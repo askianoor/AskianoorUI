@@ -1,0 +1,14 @@
+.ContactPanel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0) !important;
+    }
+
+.ContactBody{
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+.form-group-inline label{
+    margin: 10px;
+}

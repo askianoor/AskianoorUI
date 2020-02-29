@@ -20,4 +20,15 @@ export class ApiService {
     };
     return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
   }
+
+
+  contactMe(formModel) {
+    const body = {
+      Name: formModel.value.Name,
+      Email: formModel.value.Email,
+      Subject: formModel.value.Subject,
+      Message: formModel.value.Message
+    };
+    return this.http.post(this.BaseURI + '/Contact', body);
+  }
 }
