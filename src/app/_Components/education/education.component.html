@@ -1,1 +1,20 @@
-<p>education works!</p>
+<div class="container">
+    <h4>My Education</h4>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-education">
+                <div class="timeline animated slideInUp" *ngFor="let edu of Experience">
+                    <span class="icon fa {{edu.icon}}"></span>
+                    <a href="#" class="timeline-content">
+                        <h5 class="title">{{edu.educationTitle}}</h5>           
+                        <p>{{edu.degree}}</p>
+                        <p>{{edu.universityTitle}} ( {{edu.year}} )</p>
+                        <p class="description">
+                            {{edu.description}}
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
