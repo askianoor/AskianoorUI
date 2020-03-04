@@ -1,4 +1,4 @@
 .skills ul .list-group-item {
     background-color: transparent;
-
+    border: 0 !important;
 }

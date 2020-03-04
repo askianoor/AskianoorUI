@@ -1,1 +1,27 @@
-<p>about-me works!</p>
+<div class="container h-100">
+    <div class="card AboutMePanel">
+      <div class="card-body AboutMeBody">
+        <h5 class="card-title">About Me</h5>
+        <div class="card-header">
+            <div class="d-flex justify-content-end social_icon">
+                <span><i class="fa fa-stack-overflow"></i></span>
+                <span><i class="fa fa-linkedin-square"></i></span>
+                <span><i class="fa fa-github-square"></i></span>
+            </div>
+        </div>
+        <div class="card-text">
+            <div class="row">
+                <div class="col">
+                    <p>This is a Text About Me!</p>
+                </div>
+                <div class="col">
+                    <img src="/assets/Images/PC.jpg" width="400" height="200">
+                </div>
+            </div>
+        </div>
+        <div class="card-text">
+          <a [routerLink]="['/Home']" class="text-warning">Return to Home Page</a>
+        </div>
+      </div>
+    </div>
+  </div>
