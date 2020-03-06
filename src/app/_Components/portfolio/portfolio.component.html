@@ -5,38 +5,38 @@
     <h4><small>{{PortfolioDesc}}</small></h4>
 </div>
 <div class="container">
-    <div class="col PortfolioCard">
+    <div class="col PortfolioCard" *ngFor="let item of portfolios">
         <div class="card-container">
             <div class="card">
                 <div class="front">
                     <div class="cover">
-                        <img src="./assets/Images/PC.jpg"/>
+                        <img src="{{item.PictureSrc}}"/>
                     </div>
                     <div class="user">
-                        <img class="img-circle" src="images/rotating_card_profile.png"/>
+                        <img class="img-circle" src="{{item.CirclePictureSrc}}"/>
                     </div>
                     <div class="content">
                         <div class="main">
-                            <h3 class="name">Inna Corman</h3>
-                            <p class="profession">Product Manager</p>
+                            <h3 class="name">{{item.Title}}</h3>
+                            <p class="profession">{{item.SubTitle}}</p>
 
-                            <p class="text-center">"I'm the new Sinatra, and since I made it here I can make it anywhere, yeah, they love me everywhere"</p>
+                            <p class="text-center">{{item.Body}}</p>
                         </div>
                         <div class="footer">
                             <div class="rating">
-                                <i class="fa fa-mail-forward"></i> Auto Rotation
+                                <i class="fa fa-mail-forward"></i> Hover For More Details
                             </div>
                         </div>
                     </div>
                 </div> <!-- end front panel -->
                 <div class="back">
                     <div class="header">
-                        <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                        <h5 class="motto">{{item.BackTitle}}</h5>
                     </div>
                     <div class="content">
                         <div class="main">
-                            <h4 class="text-center">Job Description</h4>
-                            <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel and many others...</p>
+                            <h4 class="text-center">Technologies :</h4>
+                            <p class="text-center">{{item.Technologies}}</p>
 
                             <div class="stats-container">
                                 <div class="stats">
@@ -57,7 +57,7 @@
                                         Projects
                                     </p>
                                 </div>
-                            </div>
+                            </div> 
 
                         </div>
                     </div>

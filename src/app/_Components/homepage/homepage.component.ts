@@ -25,21 +25,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
 
     const typeTarget =  document.querySelector( '#tw' );
-    // const typeTarget2 =  document.querySelector( '#tw2' );
     const writer = new Typewriter(typeTarget, this.typeOptions);
-
-    // const writer2 = new Typewriter(typeTarget2, {
-    //   typeColor: 'Green'
-    // });
-
-    // writer2
-    // .changeTypeColor('White')
-    // .type('Hi, I am Ali kianoor.')
-    // .rest(1000)
-    // .remove(12)
-    // .removeCursor()
-    // .then(writer.start.bind(writer))
-    // .start();
 
     writer
     .changeTypeColor('White')

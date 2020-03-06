@@ -20,6 +20,7 @@ import { ContactUsComponent } from './_Components/contact-us/contact-us.componen
 import { LoginComponent } from './_Components/login/login.component';
 import { GlitchComponent } from './_Components/glitch/glitch.component';
 import { RegisterFormComponent } from './_Components/register-form/register-form.component';
+import { FooterComponent } from './_Components/footer/footer.component';
 
 
 
@@ -37,7 +38,8 @@ import { RegisterFormComponent } from './_Components/register-form/register-form
     ContactUsComponent,
     LoginComponent,
     GlitchComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

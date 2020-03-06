@@ -20,7 +20,7 @@
 .main-education .timeline:nth-child(4n) .icon,.main-education .timeline:nth-child(4n) .timeline-content,.main-education .timeline:nth-child(4n) .timeline-content:after,.main-education .timeline:nth-child(4n) .timeline-content:before{background:#3ebae7}
 .main-education .timeline:nth-child(4n) .icon{box-shadow:0 0 0 2px #3ebae7}
 @media only screen and (max-width:767px){.main-education:before{left:0;right:auto}
-.main-education .timeline,.main-education .timeline:nth-child(even),.main-education .timeline:nth-child(odd){width:100%;float:none;padding:20px 30px;margin:0 0 30px;border-right:none;border-left:7px solid #084772;border-radius:30px 0 0;right:auto;left:0}
+.main-education .timeline,.main-education .timeline:nth-child(even),.main-education .timeline:nth-child(odd){width:100%;float:none;padding:20px 30px;margin:0 0 30px;border-right:none;border-left:7px solid #fff;border-radius:30px 0 0;right:auto;left:0}
 .main-education .icon{left:auto;right:0}
 }
 @media only screen and (max-width:480px){.main-education .title{font-size:18px}

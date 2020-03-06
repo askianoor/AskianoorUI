@@ -25,6 +25,19 @@ body{
   height: 100%;
 }
 
+.footer {
+  position:fixed;
+  bottom:0px;
+  width: 100%;
+  padding: 20px;
+  text-align: right;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
 /* #particles-js{
     background-image: url('src/assets/Images/binaryPatt.jpg');
 } */
