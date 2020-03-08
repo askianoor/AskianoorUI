@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/_Service/api.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-form',
@@ -12,17 +13,18 @@ import Swal from 'sweetalert2';
 
 export class RegisterFormComponent implements OnInit {
 
-  constructor(public service: ApiService, private fb: FormBuilder) { }
+  constructor(public service: ApiService, private fb: FormBuilder, private router: Router) { }
 
   formModel = this.fb.group({
     UserName: ['', Validators.required],
     Email: ['', Validators.email],
-    FullName: [''],
+    FirstName: [''],
+    LastName: [''],
+    NickName: ['', Validators.required],
+    BirthdayDate: [''],
     Passwords: this.fb.group({
       Password: ['', [Validators.required, Validators.minLength(6)]],
-      ConfirmPassword: ['', Validators.required]
-    }, { validator: this.comparePasswords })
-
+      ConfirmPassword: ['', Validators.required]}, { validator: this.comparePasswords })
   });
 
   ngOnInit() {
@@ -41,7 +43,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.register(this.formModel).subscribe(
+    this.formModel.value.Passwords = this.formModel.value.Passwords.Password;
+    console.log(this.formModel.value);
+    this.service.register(this.formModel.value).subscribe(
       (res: any) => {
         if (res.succeeded) {
           this.formModel.reset();
@@ -51,6 +55,7 @@ export class RegisterFormComponent implements OnInit {
             icon: 'success',
             showConfirmButton: false,
             timer: 1500});
+          this.router.navigate(['/login']);
         } else {
           res.errors.forEach(element => {
             switch (element.code) {

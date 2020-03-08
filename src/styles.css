@@ -31,11 +31,16 @@ body{
   width: 100%;
   padding: 20px;
   text-align: right;
+  z-index: -1;
 }
 
 .footer > .container {
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.marginB {
+  margin-bottom: 70px;
 }
 
 /* #particles-js{

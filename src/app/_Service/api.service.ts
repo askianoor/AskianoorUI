@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { throwError, Observable } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import { LoginResponse, UserProfileResponse } from '../_Models/user';
 
 
 @Injectable({
@@ -7,28 +12,71 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
-  readonly BaseURI = 'http://localhost:54277/api';
+  readonly BaseURI = 'http://localhost:51040/api';
 
-  register(formModel) {
-    const body = {
-      UserName: formModel.value.UserName,
-      Email: formModel.value.Email,
-      FullName: formModel.value.FullName,
-      Password: formModel.value.Passwords.Password
-    };
-    return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
+  // Http Options
+  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+
+  // Handle API errors
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+      Swal.fire({
+        title: 'خطای شبکه',
+        text: 'خطایی در سیستم رخ داده است لطفا مجددا تلاش کنید!',
+        icon: 'error'});
+    } else {
+      // The backend returned an unsuccessful response code.
+      Swal.fire({
+        title: ' ${error.status} خطای سیستمی',
+        text: 'خطایی در سیستم رخ داده است لطفا مجددا تلاش کنید!',
+        icon: 'error'});
+    }
+
+    // return an observable with a user-facing error message
+    return throwError('Something bad happened; please try again later.');
+  }
+
+  // Verify user credentials on server to get token
+  loginForm(data): Observable<LoginResponse> {
+    return this.http
+      .post<LoginResponse>(this.BaseURI + '/AppUser/login', data, this.httpOptions)
+      .pipe(catchError(this.handleError));
+  }
+
+  // After login save token and other values(if any) in localStorage
+  setUser(resp: LoginResponse) {
+    localStorage.setItem('accessToken', resp.accessToken);
+    this.router.navigate(['/dashboard']);
+  }
+
+  // Checking if token is set
+  isLoggedIn() {
+    return localStorage.getItem('accessToken') != null;
+  }
+
+  // After clearing localStorage redirect to login screen
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
+  // Get profile data from server for Dashboard
+  getProfileData(): Observable<UserProfileResponse> {
+    return this.http
+      .get<UserProfileResponse>(this.BaseURI + '/UserProfile')
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  register(RegisterModel) {
+    return this.http.post(this.BaseURI + '/AppUser/Register', RegisterModel);
   }
 
 
-  contactMe(formModel) {
-    const body = {
-      Name: formModel.value.Name,
-      Email: formModel.value.Email,
-      Subject: formModel.value.Subject,
-      Message: formModel.value.Message
-    };
-    return this.http.post(this.BaseURI + '/Contact', body);
+  contactMe(ContactModel) {
+    return this.http.post(this.BaseURI + '/Contact', ContactModel);
   }
 }
