@@ -1,6 +1,13 @@
 .col
 {
 	padding: 30px;
+	text-shadow:-1px -1px 20px #000;
+	color:white;
+}
+
+.headlineHomepage {
+	color: white;
+	text-decoration: none;
 }
 
 .typeWritting { color:#fff !important; text-decoration: none;}
