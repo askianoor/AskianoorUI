@@ -21,6 +21,8 @@ import { LoginComponent } from './_Components/login/login.component';
 import { GlitchComponent } from './_Components/glitch/glitch.component';
 import { RegisterFormComponent } from './_Components/register-form/register-form.component';
 import { FooterComponent } from './_Components/footer/footer.component';
+import { DashboardComponent } from './_Components/UserPanel/dashboard/dashboard.component';
+import { DashboardSettingsComponent } from './_Components/UserPanel/dashboard-settings/dashboard-settings.component';
 
 
 
@@ -39,7 +41,9 @@ import { FooterComponent } from './_Components/footer/footer.component';
     LoginComponent,
     GlitchComponent,
     RegisterFormComponent,
-    FooterComponent
+    FooterComponent,
+    DashboardComponent,
+    DashboardSettingsComponent
   ],
   imports: [
     BrowserModule,

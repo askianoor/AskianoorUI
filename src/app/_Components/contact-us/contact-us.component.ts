@@ -25,7 +25,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.contactMe(this.formModel).subscribe(
+    this.service.contactMe(this.formModel.value).subscribe(
       (res: any) => {
         if (res.succeeded) {
           this.formModel.reset();
