@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../_Service/api.service';
 import Swal from 'sweetalert2';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private navbar: NavbarComponent) { }
 
   ngOnInit(): void { }
 
@@ -20,16 +21,17 @@ export class LoginComponent implements OnInit {
         if (response.accessToken !== null ) {
         this.apiService.setUser(response);
         Swal.fire({
-          title: 'ورود موفق',
-          text: 'به پنل مدیریت حساب خوش آمدید.',
+          title: 'Successful Login',
+          text: 'Welcome to my website.',
           icon: 'success',
           showConfirmButton: false,
           timer: 1500});
       }
+        this.navbar.ngOnInit();
     }, error => {
       Swal.fire({
-        title: 'اعتبارسنجی ناموفق',
-        text: 'نام کاربری یا رمز عبور اشتباه است!',
+        title: 'Login failed',
+        text: 'Username or Password is wrong!',
         icon: 'error'});
     });
   }

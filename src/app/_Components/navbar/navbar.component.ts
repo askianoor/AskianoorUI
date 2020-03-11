@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/_Service/api.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+  isLoggedIn = false;
 
   menu = [
     { id: 0, name: 'Home', path: '/home' },
@@ -17,9 +20,17 @@ export class NavbarComponent implements OnInit {
     { id: 2, name: 'Contact Me', path: '/Contact'  },
   ];
 
-  constructor() { }
+  constructor(private apiService: ApiService) {
+    this.isLoggedIn = this.apiService.isLoggedIn();
+  }
 
   ngOnInit() {
+    this.isLoggedIn = this.apiService.isLoggedIn();
+  }
+
+  Logout() {
+      this.apiService.logout();
+      this.ngOnInit();
   }
 
 }

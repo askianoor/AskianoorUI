@@ -22,9 +22,14 @@ import { GlitchComponent } from './_Components/glitch/glitch.component';
 import { RegisterFormComponent } from './_Components/register-form/register-form.component';
 import { FooterComponent } from './_Components/footer/footer.component';
 import { DashboardComponent } from './_Components/UserPanel/dashboard/dashboard.component';
-import { DashboardSettingsComponent } from './_Components/UserPanel/dashboard-settings/dashboard-settings.component';
 
-
+import { AdminDashboardComponent } from './_Components/AdminPanel/admin-dashboard/admin-dashboard.component';
+import { DashboardSettingsComponent } from './_Components/AdminPanel/dashboard-settings/dashboard-settings.component';
+import { ManageSkillsComponent } from './_Components/AdminPanel/manage-skills/manage-skills.component';
+import { ManageEducationComponent } from './_Components/AdminPanel/manage-education/manage-education.component';
+import { ManageExperienceComponent } from './_Components/AdminPanel/manage-experience/manage-experience.component';
+import { ManageNavbarComponent } from './_Components/AdminPanel/manage-navbar/manage-navbar.component';
+import { ManagePortfolioComponent } from './_Components/AdminPanel/manage-portfolio/manage-portfolio.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,13 @@ import { DashboardSettingsComponent } from './_Components/UserPanel/dashboard-se
     RegisterFormComponent,
     FooterComponent,
     DashboardComponent,
-    DashboardSettingsComponent
+    DashboardSettingsComponent,
+    ManageSkillsComponent,
+    ManageEducationComponent,
+    ManageExperienceComponent,
+    ManageNavbarComponent,
+    ManagePortfolioComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +65,7 @@ import { DashboardSettingsComponent } from './_Components/UserPanel/dashboard-se
     FontAwesomeModule,
     AngularTiltModule
   ],
-  providers: [],
+  providers: [NavbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

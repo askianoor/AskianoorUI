@@ -6,7 +6,6 @@ import { retry, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { LoginResponse, UserProfileResponse } from '../_Models/user';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +49,7 @@ export class ApiService {
   // After login save token and other values(if any) in localStorage
   setUser(resp: LoginResponse) {
     localStorage.setItem('accessToken', resp.accessToken);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/Admin/Dashboard']);
   }
 
   // Checking if token is set
