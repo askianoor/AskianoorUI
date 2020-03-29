@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VanillaTiltSettings } from 'angular-tilt';
 import Typewriter from 't-writer.js';
+import { ApiService } from 'src/app/_Service/api.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -10,6 +12,9 @@ import Typewriter from 't-writer.js';
 })
 export class HomepageComponent implements OnInit {
 
+  HomePageText = '';
+  HomePageImage = '';
+
   tiltSettings: VanillaTiltSettings = {};
 
   typeOptions = {
@@ -17,13 +22,13 @@ export class HomepageComponent implements OnInit {
     typeColor: 'white'
   };
 
-  constructor() {
+  constructor(private apiService: ApiService) {
     this.tiltSettings.speed = 400;
     this.tiltSettings.scale = 1.1;
    }
 
   ngOnInit() {
-
+    this.getSettings();
     const typeTarget =  document.querySelector( '#tw' );
     const writer = new Typewriter(typeTarget, this.typeOptions);
 
@@ -68,6 +73,21 @@ export class HomepageComponent implements OnInit {
     .then(writer.start.bind(writer));
 
     writer.start();
+  }
+
+  getSettings() {
+    this.apiService.getSettings().subscribe(response => {
+        if (response !== null ) {
+          console.log(response);
+          this.HomePageText = response[0].homePageText;
+          this.HomePageImage = response[0].homePageImage;
+        }
+    }, error => {
+      Swal.fire({
+        title: 'Dashboard Settings Fetch failed',
+        text: 'Something is Wrong, please contact with Web Master!',
+        icon: 'error'});
+    });
   }
 
 }

@@ -5,6 +5,7 @@ import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { LoginResponse, UserProfileResponse } from '../_Models/user';
+import { Navbar, DashboardSettings } from '../_Models/general';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ApiService {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  readonly BaseURI = 'http://localhost:51040/api';
+  readonly BaseURI = 'https://api.askianoor.ir/api';
 
   // Http Options
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
@@ -77,5 +78,17 @@ export class ApiService {
 
   contactMe(ContactModel) {
     return this.http.post(this.BaseURI + '/Contact', ContactModel);
+  }
+
+  getNavbars(): Observable<Navbar> {
+    return this.http
+      .get<Navbar>(this.BaseURI + '/Navbars')
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getSettings(): Observable<DashboardSettings> {
+    return this.http
+      .get<DashboardSettings>(this.BaseURI + '/DashboardSettings')
+      .pipe(retry(2), catchError(this.handleError));
   }
 }

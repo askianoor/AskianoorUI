@@ -11,8 +11,7 @@
         </div>
         <div class="card-text">
             <div class="row">
-                <div class="col">
-                    {{AboutMe.Description}}
+                <div class="col" [innerHTML]="AboutMe.Description">
                 </div>
                 <div class="col">
                     <img src="{{AboutMe.Image}}">

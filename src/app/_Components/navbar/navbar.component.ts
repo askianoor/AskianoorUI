@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_Service/api.service';
+import Swal from 'sweetalert2';
+import { Navbar } from 'src/app/_Models/general';
 
 @Component({
   selector: 'app-navbar',
@@ -9,28 +11,33 @@ import { ApiService } from 'src/app/_Service/api.service';
 export class NavbarComponent implements OnInit {
 
   isLoggedIn = false;
-
-  menu = [
-    { id: 0, name: 'Home', path: '/home' },
-    { id: 1, name: 'About Me', path: '/About'  },
-    { id: 2, name: 'Portfolio', path: '/Portfolio'  },
-    { id: 2, name: 'Skills', path: '/Skills'  },
-    { id: 2, name: 'Experience', path: '/Experience'  },
-    { id: 2, name: 'Education', path: '/Education'  },
-    { id: 2, name: 'Contact Me', path: '/Contact'  },
-  ];
+  menu: Navbar;
 
   constructor(private apiService: ApiService) {
     this.isLoggedIn = this.apiService.isLoggedIn();
   }
 
   ngOnInit() {
+    this.getNavBars();
     this.isLoggedIn = this.apiService.isLoggedIn();
   }
 
   Logout() {
       this.apiService.logout();
       this.ngOnInit();
+  }
+
+  getNavBars() {
+    this.apiService.getNavbars().subscribe(response => {
+        if (response !== null ) {
+          this.menu = response;
+        }
+    }, error => {
+      Swal.fire({
+        title: 'Menu Fetch failed',
+        text: 'Something is Wrong, please contact with Web Master!',
+        icon: 'error'});
+    });
   }
 
 }
