@@ -17,3 +17,22 @@ export interface DashboardSettings {
     homePageText: string;
     footerText: string;
 }
+
+export interface Skill {
+    SkillId: string;
+    Name: string;
+    Level: number;
+    cssClass: string;
+    group: number;
+}
+
+export interface Education {
+    educationTitle: string;
+    universityTitle: string;
+    universityAddress: string;
+    universityPlace: string;
+    degree: string;
+    description: string;
+    year: string;
+    icon: string;
+}

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-
-interface Skill {
-  name: string;
-  level: number;
-  cssClass: string;
-  group: number;
-}
+import Swal from 'sweetalert2';
+import { ApiService } from 'src/app/_Service/api.service';
+import { Skill } from 'src/app/_Models/general';
 
 
 @Component({
@@ -16,23 +11,27 @@ interface Skill {
 })
 export class SkillsComponent implements OnInit {
 
-  skills: Skill[] = [
-    {name: 'C#', level: 98, cssClass: 'bg-success', group: 1},
-    {name: '.Net Framework', level: 92, cssClass: 'bg-warning', group: 1},
-    {name: 'Entity Framework', level: 95, cssClass: 'bg-primary', group: 1},
-    {name: 'Angular', level: 85, cssClass: 'bg-danger', group: 1},
-    {name: 'C#', level: 98, cssClass: 'bg-success', group: 2},
-    {name: '.Net Framework', level: 92, cssClass: 'bg-warning', group: 2},
-    {name: 'Entity Framework', level: 95, cssClass: 'bg-primary', group: 2},
-    {name: 'Angular', level: 85, cssClass: 'bg-danger', group: 2},
-];
+  skills: Skill[] = [];
+  constructor(private apiService: ApiService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.getSkills();
   }
 
-  GroupSkills(groupId) {
+  getSkills() {
+    this.apiService.getSkills().subscribe(response => {
+        if (response !== null ) {
+          this.skills = response;
+        }
+    }, error => {
+      Swal.fire({
+        title: 'Skills Fetch failed',
+        text: 'Something is Wrong, please contact with Web Master!',
+        icon: 'error'});
+    });
+  }
+
+  GroupSkills(groupId: number) {
     return this.skills.filter(x => x.group === groupId);
   }
 

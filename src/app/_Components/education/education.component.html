@@ -3,14 +3,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="main-education">
-                <div class="timeline animated slideInUp" *ngFor="let edu of Experience">
+                <div class="timeline animated slideInUp" *ngFor="let edu of Educations">
                     <span class="icon fa {{edu.icon}}"></span>
-                    <a href="#" class="timeline-content">
+                    <a href="{{edu.universityAddress}}" target="_blank" class="timeline-content">
                         <h5 class="title">{{edu.educationTitle}}</h5>           
                         <p>{{edu.degree}}</p>
                         <p>{{edu.universityTitle}} ( {{edu.year}} )</p>
-                        <p class="description">
-                            {{edu.description}}
+                        <p class="description" [innerHTML]="edu.description">
                         </p>
                     </a>
                 </div>
