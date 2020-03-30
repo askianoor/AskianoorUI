@@ -5,7 +5,7 @@ import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { LoginResponse, UserProfileResponse } from '../_Models/user';
-import { Navbar, DashboardSettings, Skill, Education, Experience } from '../_Models/general';
+import { Navbar, DashboardSettings, Skill, Education, Experience, Portfolio, SocialNetwork } from '../_Models/general';
 
 @Injectable({
   providedIn: 'root'
@@ -107,6 +107,18 @@ export class ApiService {
   getExperiences(): Observable<Experience[]> {
     return this.http
       .get<Experience[]>(this.BaseURI + '/Experiences')
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getPortfolios(): Observable<Portfolio[]> {
+    return this.http
+      .get<Portfolio[]>(this.BaseURI + '/Portfolios')
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getSocialNetworks(): Observable<SocialNetwork[]> {
+    return this.http
+      .get<SocialNetwork[]>(this.BaseURI + '/SocialNetworks')
       .pipe(retry(2), catchError(this.handleError));
   }
 }

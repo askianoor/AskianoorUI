@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/_Service/api.service';
+import { Portfolio } from 'src/app/_Models/general';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-portfolio',
@@ -11,9 +14,25 @@ export class PortfolioComponent implements OnInit {
   PortfolioDesc = 'Check out a few of my projects!';
   portfolios = {};
 
-  constructor() { }
+  Portfolios: Portfolio[] = [];
+
+constructor(private apiService: ApiService) { }
 
   ngOnInit() {
+    this.getPortfolios();
+  }
+
+  getPortfolios() {
+    this.apiService.getPortfolios().subscribe(response => {
+        if (response !== null ) {
+          this.Portfolios = response;
+        }
+    }, error => {
+      Swal.fire({
+        title: 'Portfolios Fetch failed',
+        text: 'Something is Wrong, please contact with Web Master!',
+        icon: 'error'});
+    });
   }
 
 }

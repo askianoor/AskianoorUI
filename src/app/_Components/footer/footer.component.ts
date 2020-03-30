@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  footerText = 'Test';
+  footerText = 'The Connection has been lost to Ali Kianoor Website!';
 
   constructor(private apiService: ApiService) { }
 

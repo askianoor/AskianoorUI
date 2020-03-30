@@ -4,23 +4,23 @@
     </h1>
     <h4><small>{{PortfolioDesc}}</small></h4>
 </div>
-<div class="container">
-    <div class="col PortfolioCard" *ngFor="let item of portfolios">
+<div class="container row m-5">
+    <div class="col PortfolioCard" *ngFor="let item of Portfolios">
         <div class="card-container">
             <div class="card">
                 <div class="front">
                     <div class="cover">
-                        <img src="{{item.PictureSrc}}"/>
+                        <img src="{{item.pictureSrc}}"/>
                     </div>
                     <div class="user">
-                        <img class="img-circle" src="{{item.CirclePictureSrc}}"/>
+                        <img class="img-circle" src="{{item.circlePictureSrc}}"/>
                     </div>
                     <div class="content">
                         <div class="main">
-                            <h3 class="name">{{item.Title}}</h3>
-                            <p class="profession">{{item.SubTitle}}</p>
+                            <h3 class="name">{{item.title}}</h3>
+                            <p class="profession">{{item.subTitle}}</p>
 
-                            <p class="text-center">{{item.Body}}</p>
+                            <p class="text-center">{{item.body}}</p>
                         </div>
                         <div class="footer">
                             <div class="rating">
@@ -31,14 +31,14 @@
                 </div> <!-- end front panel -->
                 <div class="back">
                     <div class="header">
-                        <h5 class="motto">{{item.BackTitle}}</h5>
+                        <h5 class="motto">{{item.backTitle}}</h5>
                     </div>
                     <div class="content">
                         <div class="main">
                             <h4 class="text-center">Technologies :</h4>
-                            <p class="text-center">{{item.Technologies}}</p>
+                            <p class="text-center">{{item.technologies}}</p>
 
-                            <div class="stats-container">
+                            <div class="stats-container" [innerHTML]="item.backBody">
                                 <div class="stats">
                                     <h4>235</h4>
                                     <p>
@@ -63,9 +63,9 @@
                     </div>
                     <div class="footer">
                         <div class="social-links text-center">
-                            <a href="#" class="facebook"><i class="fa fa-facebook fa-fw"></i></a>
-                            <a href="#" class="google"><i class="fa fa-google-plus fa-fw"></i></a>
-                            <a href="#" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                            <!-- <a href="#" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> -->
+                            <a href="{{item.projectLink}}" class="btn btn-success w-75"><i class="fa fa-product-hunt fa-fw"></i> Link to the Website</a>
+                            <!-- <a href="#" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> -->
                         </div>
                     </div>
                 </div> <!-- end back panel -->

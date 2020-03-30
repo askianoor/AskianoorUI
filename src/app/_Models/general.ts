@@ -45,3 +45,25 @@ export interface Experience {
     year: string;
     icon: string;
 }
+
+export interface Portfolio {
+    id: string;
+    title: string;
+    subTitle: string;
+    backTitle: string;
+    body: string;
+    backBody: string;
+    pictureSrc: string;
+    circlePictureSrc: string;
+    technologies: string;
+    projectLink: string;
+    portfolioCategoryId: string;
+}
+
+export interface SocialNetwork {
+    socialId: string;
+    name: string;
+    icon: string;
+    link: string;
+}
+
