@@ -36,3 +36,12 @@ export interface Education {
     year: string;
     icon: string;
 }
+
+export interface Experience {
+    jobTitle: string;
+    companyTitle: string;
+    companyAddress: string;
+    description: string;
+    year: string;
+    icon: string;
+}
