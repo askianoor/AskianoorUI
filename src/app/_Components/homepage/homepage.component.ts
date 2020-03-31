@@ -78,7 +78,7 @@ export class HomepageComponent implements OnInit {
   getSettings() {
     this.apiService.getSettings().subscribe(response => {
         if (response !== null ) {
-          console.log(response);
+          // console.log(response);
           this.HomePageText = response[0].homePageText;
           this.HomePageImage = response[0].homePageImage;
         }

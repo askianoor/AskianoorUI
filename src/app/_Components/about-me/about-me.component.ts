@@ -10,7 +10,7 @@ import { SocialNetwork } from 'src/app/_Models/general';
 })
 export class AboutMeComponent implements OnInit {
 
-  AboutMe: any = {Description: 'About Me Description', Image: 'bg-success'};
+  AboutMe: any = {Description: 'About Me Description is Loading ...', Image: ''};
   SocialNetworks: SocialNetwork[] = [];
 
   constructor(private apiService: ApiService) { }
@@ -23,7 +23,6 @@ export class AboutMeComponent implements OnInit {
   getSettings() {
     this.apiService.getSettings().subscribe(response => {
         if (response !== null ) {
-          console.log(response);
           this.AboutMe.Description = response[0].aboutMeDescription;
           this.AboutMe.Image = response[0].aboutMeImage;
         }

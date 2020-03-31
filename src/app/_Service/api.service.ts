@@ -75,10 +75,9 @@ export class ApiService {
     return this.http.post(this.BaseURI + '/AppUser/Register', RegisterModel);
   }
 
-
-  contactMe(ContactModel) {
-    return this.http.post(this.BaseURI + '/Contact', ContactModel);
-  }
+  // contactMe(ContactModel) {
+  //   return this.http.post(this.BaseURI + '/Contact', ContactModel);
+  // }
 
   getNavbars(): Observable<Navbar> {
     return this.http

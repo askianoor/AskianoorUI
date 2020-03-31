@@ -25,7 +25,6 @@
                     <label>Message</label>
                     <textarea class="form-control" formControlName="Message"></textarea>
                 </div>
-
                 <div class="form-group">
                     <button type="submit" class="btn btn-success btn-block" [disabled]="!formModel.valid">Send Message</button>
                 </div>
@@ -40,35 +39,16 @@
       <div class="row">
         <div class="hover"><span>Social Media</span>
             <a class="social-link" href="https://www.linkedin.com/in/askianoor/" target="_blank"><i class="fa fa-linkedin"></i></a>
-            <a class="social-link" href="https://codepen.io/askianoor" target="_blank"><i class="fa fa-codepen"></i></a>
+            <a class="social-link" href="skype:ask1366?chat" target="_blank"><i class="fa fa-skype"></i></a>
             <a class="social-link" href="https://www.instagram.com/askianoor/" target="_blank"><i class="fa fa-instagram"></i></a>
             <a class="social-link" href="https://github.com/askianoor/" target="_blank"><i class="fa fa-github"></i></a>
         </div>
-        <script>
-            // Place this code in the head section of your HTML file 
-            (function(r, d, s) {
-                r.loadSkypeWebSdkAsync = r.loadSkypeWebSdkAsync || function(p) {
-                    var js, sjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(p.id)) { return; }
-                    js = d.createElement(s);
-                    js.id = p.id;
-                    js.src = p.scriptToLoad;
-                    js.onload = p.callback
-                    sjs.parentNode.insertBefore(js, sjs);
-                };
-                var p = {
-                    scriptToLoad: 'https://swx.cdn.skype.com/shared/v/latest/skypewebsdk.js',
-                    id: 'ask1366'
-                };
-                r.loadSkypeWebSdkAsync(p);
-            })(window, document, 'script');
-        </script>
-            
+            <i class="fa fa-facebook" aria-hidden="true"></i>
         <!-- Add class skype-share and data-style attribute with value (large, small, circle, square) to get the default button style -->
         <!-- Additional attributes: data-lang='en-US' (for language) data-href='' (use '' for page URL, 'www.skype.com' for specific URL) -->
         <!-- data-text = 'some message' (to pre-fill the message to that will be shared by the user, use '' to prompt user to enter a message) -->
         <!-- Place the code of the share button where you what the share button to appear -->
-        <div class='skype-share' data-href='' data-lang='' data-text='' data-style='circle' ></div>
+        <div class='skype-share' data-href='' data-lang='en-US' data-text='' data-style='circle' ></div>
     </div>
     </div>
   </div>
