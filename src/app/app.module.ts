@@ -23,6 +23,8 @@ import { LoginComponent } from './_Components/login/login.component';
 import { RegisterFormComponent } from './_Components/register-form/register-form.component';
 import { FooterComponent } from './_Components/footer/footer.component';
 import { DashboardComponent } from './_Components/UserPanel/dashboard/dashboard.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { DashboardComponent } from './_Components/UserPanel/dashboard/dashboard.
     ReactiveFormsModule,
     FontAwesomeModule,
     AngularTiltModule,
-    RecaptchaV3Module
+    RecaptchaV3Module,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [NavbarComponent, {provide: RECAPTCHA_V3_SITE_KEY, useValue: 'SiteKey' }],
   bootstrap: [AppComponent]
