@@ -1,29 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { LoginResponse, UserProfileResponse } from '../_Models/user';
-import { Navbar, DashboardSettings, Skill, Education, Experience, Portfolio, SocialNetwork } from '../_Models/general';
+import { Navbar, DashboardSettings, Skill, Education, Experience,
+        Portfolio, SocialNetwork, ReCaptchaResponse, ReCaptchaRequest } from '../_Models/general';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
+  ReqToken: ReCaptchaRequest = { response: '', secret: 'SecrectKey' };
   constructor(private router: Router, private http: HttpClient) { }
 
   readonly BaseURI = 'https://api.askianoor.ir/api';
 
   // Http Options
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+  httpReCaptchaOptions = {headers: new HttpHeaders(
+    {'Content-Type': 'application/x-www-form-urlencoded',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Origin': '*'})};
 
   // Handle API errors
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
       Swal.fire({
         title: 'خطای شبکه',
         text: 'خطایی در سیستم رخ داده است لطفا مجددا تلاش کنید!',
@@ -31,13 +35,13 @@ export class ApiService {
     } else {
       // The backend returned an unsuccessful response code.
       Swal.fire({
-        title: ' ${error.status} خطای سیستمی',
+        title: 'خطای سیستمی',
         text: 'خطایی در سیستم رخ داده است لطفا مجددا تلاش کنید!',
         icon: 'error'});
     }
 
     // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later.');
+    return throwError('Something bad happened; please try again later. Error:'); // + JSON.stringify(error));
   }
 
   // Verify user credentials on server to get token
@@ -119,5 +123,15 @@ export class ApiService {
     return this.http
       .get<SocialNetwork[]>(this.BaseURI + '/SocialNetworks')
       .pipe(retry(2), catchError(this.handleError));
+  }
+
+  // Verify The Token is Valid On the Server
+  CheckReCaptchaToken(response): Observable<ReCaptchaResponse> {
+    this.ReqToken.response = response;
+    return this.http
+      .post<ReCaptchaResponse>('https://www.google.com/recaptcha/api/siteverify?secret=' + this.ReqToken.secret +
+                                      '&response=' + this.ReqToken.response, null , this.httpReCaptchaOptions)
+                                      // httpReCaptchaOptions
+      .pipe(catchError(this.handleError));
   }
 }

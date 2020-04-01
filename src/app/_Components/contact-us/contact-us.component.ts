@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_Service/api.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import '../../../assets/Scripts/smtp.js';
 import Swal from 'sweetalert2';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { ReCaptchaResponse } from 'src/app/_Models/general.js';
 declare let Email: any;
 
 @Component({
@@ -11,8 +12,8 @@ declare let Email: any;
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-
-  constructor(public service: ApiService, private fb: FormBuilder) { }
+  ReCaptchaToken: ReCaptchaResponse = { success: true, challenge_ts: '', hostname: ''};
+  constructor(public service: ApiService, private fb: FormBuilder, private recaptchaV3Service: ReCaptchaV3Service) { }
 
   formModel = this.fb.group({
     Name: ['', Validators.required],
@@ -23,12 +24,18 @@ export class ContactUsComponent implements OnInit {
 
   ngOnInit() {
     this.formModel.reset();
+    // this.recaptchaV3Service.execute('onSubmit').subscribe((token) =>
+    // this.service.CheckReCaptchaToken(token).subscribe(response => {
+    //   if (response !== null ) {
+    //     this.ReCaptchaToken = response;
+    //   }
+    // }));
   }
 
   onSubmit() {
-
+    if (this.ReCaptchaToken.success) {
     Email.send({
-      SecureToken : 'tokentxt',
+      SecureToken : 'f646d316-dd50-4da2-8103-40e48130d40f',
       To : 'askianoor@gmail.com',
       From : this.formModel.value.Email,
       Subject : this.formModel.value.Subject + ' From ' + this.formModel.value.Name,
@@ -43,6 +50,12 @@ export class ContactUsComponent implements OnInit {
                     timer: 1500}),
                     this.formModel.reset()
       );
+    } else {
+      Swal.fire({
+        title: 'Registration Failed',
+        text:  'If you are not a robot, Please enable javascript and try again!',
+        icon: 'error'});
+      }
   }
 
   // onSubmit() {

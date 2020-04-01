@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../_Service/api.service';
 import Swal from 'sweetalert2';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private apiService: ApiService, private navbar: NavbarComponent) { }
+  constructor(private apiService: ApiService, private navbar: NavbarComponent, private recaptchaV3Service: ReCaptchaV3Service) { }
 
   ngOnInit(): void { }
 
