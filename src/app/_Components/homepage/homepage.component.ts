@@ -79,13 +79,13 @@ export class HomepageComponent implements OnInit {
     this.apiService.getSettings().subscribe(response => {
         if (response !== null ) {
           // console.log(response);
-          this.HomePageText = response[0].homePageText;
-          this.HomePageImage = response[0].homePageImage;
+          this.HomePageText = response.homePageText;
+          this.HomePageImage = response.homePageImage;
         }
     }, error => {
       Swal.fire({
         title: 'Dashboard Settings Fetch failed',
-        text: 'Something is Wrong, please contact with Web Master!',
+        text: 'Something is Wrong, please contact with Web Master! ' + error,
         icon: 'error'});
     });
   }

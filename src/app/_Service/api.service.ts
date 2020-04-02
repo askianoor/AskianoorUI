@@ -18,7 +18,9 @@ export class ApiService {
   readonly BaseURI = 'https://api.askianoor.ir/api';
 
   // Http Options
-  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*'})};
+
   httpReCaptchaOptions = {headers: new HttpHeaders(
     {'Content-Type': 'application/x-www-form-urlencoded',
     'Access-Control-Allow-Credentials': 'true',
@@ -29,19 +31,19 @@ export class ApiService {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       Swal.fire({
-        title: 'خطای شبکه',
-        text: 'خطایی در سیستم رخ داده است لطفا مجددا تلاش کنید!',
+        title: 'Network Error',
+        text: 'Network Problem; please try again later!',
         icon: 'error'});
     } else {
       // The backend returned an unsuccessful response code.
       Swal.fire({
-        title: 'خطای سیستمی',
-        text: 'خطایی در سیستم رخ داده است لطفا مجددا تلاش کنید!',
+        title: 'System Error',
+        text: 'Something bad happened; please try again later!',
         icon: 'error'});
     }
 
     // return an observable with a user-facing error message
-    return throwError('Something bad happened; please try again later. Error:'); // + JSON.stringify(error));
+    return throwError('Something bad happened; please try again later. Error:' + JSON.stringify(error));
   }
 
   // Verify user credentials on server to get token
@@ -91,7 +93,7 @@ export class ApiService {
 
   getSettings(): Observable<DashboardSettings> {
     return this.http
-      .get<DashboardSettings>(this.BaseURI + '/DashboardSettings')
+      .get<DashboardSettings>(this.BaseURI + '/DashboardSettings/1')
       .pipe(retry(2), catchError(this.handleError));
   }
 

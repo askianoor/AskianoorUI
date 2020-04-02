@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
   getSettings() {
     this.apiService.getSettings().subscribe(response => {
         if (response !== null ) {
-          this.footerText = response[0].footerText;
+          this.footerText = response.footerText;
         }
     }, error => {
       Swal.fire({

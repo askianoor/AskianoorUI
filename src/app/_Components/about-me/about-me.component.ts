@@ -23,8 +23,8 @@ export class AboutMeComponent implements OnInit {
   getSettings() {
     this.apiService.getSettings().subscribe(response => {
         if (response !== null ) {
-          this.AboutMe.Description = response[0].aboutMeDescription;
-          this.AboutMe.Image = response[0].aboutMeImage;
+          this.AboutMe.Description = response.aboutMeDescription;
+          this.AboutMe.Image = response.aboutMeImage;
         }
     }, error => {
       Swal.fire({
