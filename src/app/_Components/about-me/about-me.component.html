@@ -3,20 +3,17 @@
       <div class="card-body AboutMeBody">
         <h5 class="card-title">About Me</h5>
         <div class="card-header">
-            <div class="d-flex justify-content-end social_icon">
+            <div class="justify-content-end social_icon d-none d-md-flex">
               <span *ngFor="let item of SocialNetworks">
                 <a href="{{item.link}}"><i class="fa {{item.icon}}"></i></a>
               </span>
-                <!-- <span><i class="fa fa-stack-overflow"></i></span>
-                <span><i class="fa fa-linkedin-square"></i></span>
-                <span><i class="fa fa-github-square"></i></span> -->
             </div>
         </div>
         <div class="card-text">
             <div class="row">
-                <div class="col" [innerHTML]="AboutMe.Description">
+                <div class="col e2e-inner-html-bound" [innerHTML]="AboutMe.Description">
                 </div>
-                <div class="col" >
+                <div class="col d-none d-md-block" >
                     <img class="AboutMeImage" src="{{AboutMe.Image}}">
                 </div>
             </div>

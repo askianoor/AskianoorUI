@@ -115,9 +115,11 @@
 }
 .card .content .main {
     min-height: 160px;
+    /* min-height: 115px; */
 }
 .card .back .content .main {
     height: 215px;
+    /* height: 170px; */
 }
 .card .name {
     font-size: 22px;

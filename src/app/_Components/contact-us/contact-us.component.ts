@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_Service/api.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { ReCaptchaV3Service } from 'ng-recaptcha';
-import { ReCaptchaResponse } from 'src/app/_Models/general.js';
+// import { ReCaptchaV3Service } from 'ng-recaptcha';
+// import { ReCaptchaResponse } from 'src/app/_Models/general.js';
 declare let Email: any;
 
 @Component({
@@ -12,8 +12,10 @@ declare let Email: any;
   styleUrls: ['./contact-us.component.css']
 })
 export class ContactUsComponent implements OnInit {
-  ReCaptchaToken: ReCaptchaResponse = { success: true, challenge_ts: '', hostname: ''};
-  constructor(public service: ApiService, private fb: FormBuilder, private recaptchaV3Service: ReCaptchaV3Service) { }
+  // ReCaptchaToken: ReCaptchaResponse = { success: true, challenge_ts: '', hostname: ''};
+  // constructor(public service: ApiService, private fb: FormBuilder, private recaptchaV3Service: ReCaptchaV3Service) { }
+
+  constructor(public service: ApiService, private fb: FormBuilder) { }
 
   formModel = this.fb.group({
     Name: ['', Validators.required],
@@ -33,7 +35,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.ReCaptchaToken.success) {
+    // if (this.ReCaptchaToken.success) {
     Email.send({
       SecureToken : 'f646d316-dd50-4da2-8103-40e48130d40f',
       To : 'askianoor@gmail.com',
@@ -50,12 +52,12 @@ export class ContactUsComponent implements OnInit {
                     timer: 1500}),
                     this.formModel.reset()
       );
-    } else {
-      Swal.fire({
-        title: 'Registration Failed',
-        text:  'If you are not a robot, Please enable javascript and try again!',
-        icon: 'error'});
-      }
+    // } else {
+    //   Swal.fire({
+    //     title: 'Registration Failed',
+    //     text:  'If you are not a robot, Please enable javascript and try again!',
+    //     icon: 'error'});
+    //   }
   }
 
   // onSubmit() {

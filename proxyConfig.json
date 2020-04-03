@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+        "target": "https://api.askianoor.ir/",
+        "protocol": "https:",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

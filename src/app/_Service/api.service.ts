@@ -15,11 +15,10 @@ export class ApiService {
   ReqToken: ReCaptchaRequest = { response: '', secret: 'SecrectKey' };
   constructor(private router: Router, private http: HttpClient) { }
 
-  readonly BaseURI = 'https://api.askianoor.ir/api';
+  readonly BaseURI = '/api';
 
   // Http Options
-  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*'})};
+  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
   httpReCaptchaOptions = {headers: new HttpHeaders(
     {'Content-Type': 'application/x-www-form-urlencoded',
@@ -73,12 +72,12 @@ export class ApiService {
   // Get profile data from server for Dashboard
   getProfileData(): Observable<UserProfileResponse> {
     return this.http
-      .get<UserProfileResponse>(this.BaseURI + '/UserProfile')
+      .get<UserProfileResponse>(this.BaseURI + '/UserProfile', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   register(RegisterModel) {
-    return this.http.post(this.BaseURI + '/AppUser/Register', RegisterModel);
+    return this.http.post(this.BaseURI + '/AppUser/Register', RegisterModel, this.httpOptions);
   }
 
   // contactMe(ContactModel) {
@@ -87,43 +86,43 @@ export class ApiService {
 
   getNavbars(): Observable<Navbar> {
     return this.http
-      .get<Navbar>(this.BaseURI + '/Navbars')
+      .get<Navbar>(this.BaseURI + '/Navbars', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getSettings(): Observable<DashboardSettings> {
     return this.http
-      .get<DashboardSettings>(this.BaseURI + '/DashboardSettings/1')
+      .get<DashboardSettings>(this.BaseURI + '/DashboardSettings/1', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getSkills(): Observable<Skill[]> {
     return this.http
-      .get<Skill[]>(this.BaseURI + '/Skills')
+      .get<Skill[]>(this.BaseURI + '/Skills', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getEducations(): Observable<Education[]> {
     return this.http
-      .get<Education[]>(this.BaseURI + '/Educations')
+      .get<Education[]>(this.BaseURI + '/Educations', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getExperiences(): Observable<Experience[]> {
     return this.http
-      .get<Experience[]>(this.BaseURI + '/Experiences')
+      .get<Experience[]>(this.BaseURI + '/Experiences', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getPortfolios(): Observable<Portfolio[]> {
     return this.http
-      .get<Portfolio[]>(this.BaseURI + '/Portfolios')
+      .get<Portfolio[]>(this.BaseURI + '/Portfolios', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getSocialNetworks(): Observable<SocialNetwork[]> {
     return this.http
-      .get<SocialNetwork[]>(this.BaseURI + '/SocialNetworks')
+      .get<SocialNetwork[]>(this.BaseURI + '/SocialNetworks', this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
