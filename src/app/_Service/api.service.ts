@@ -15,7 +15,7 @@ export class ApiService {
   ReqToken: ReCaptchaRequest = { response: '', secret: 'SecrectKey' };
   constructor(private router: Router, private http: HttpClient) { }
 
-  readonly BaseURI = '/api';
+  readonly BaseURI = 'http://localhost:4200/api';
 
   // Http Options
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
