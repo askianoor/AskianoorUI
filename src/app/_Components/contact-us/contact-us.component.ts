@@ -16,8 +16,6 @@ export class ContactUsComponent implements OnInit {
   ReCaptchaToken: ReCaptchaResponse = { success: true, challenge_ts: '', hostname: ''};
   constructor(public service: ApiService, private fb: FormBuilder, private recaptchaV3Service: ReCaptchaV3Service) { }
 
-  // constructor(public service: ApiService, private fb: FormBuilder) { }
-
   formModel = this.fb.group({
     Name: ['', Validators.required],
     Email: ['', Validators.email],
@@ -29,29 +27,34 @@ export class ContactUsComponent implements OnInit {
     this.formModel.reset();
   }
 
-  // onSubmit() {
-  //   Email.send({
-  //     SecureToken : 'f646d316-dd50-4da2-8103-40e48130d40f',
-  //     To : 'askianoor@gmail.com',
-  //     From : this.formModel.value.Email,
-  //     Subject : this.formModel.value.Subject + ' From ' + this.formModel.value.Name,
-  //     Body : this.formModel.value.Message
-  //     }).then(
-  //       message =>  console.log(message),
-  //                   Swal.fire({
-  //                   title: 'Sent Successfully!',
-  //                   text: 'Thank you for reaching out to me!',
-  //                   icon: 'success',
-  //                   showConfirmButton: false,
-  //                   timer: 1500}),
-  //                   this.formModel.reset()
-  //     );
-  // }
-
   onSubmit() {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'info',
+      title: 'Security Check & Sending Process Start ...',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true
+    });
+    this.recaptchaV3Service.execute('onSubmit').subscribe((token) =>
+    this.service.CheckReCaptchaToken(token).subscribe(
+      (res: ReCaptchaResponse) => {
+        if (res.success) {
+          this.SendMail();
+        } else {
+            Swal.fire({
+              title: 'ReCaptcha Failed',
+              text: 'Please make sure your javascript is ON and try again, If you are not a Robot!',
+              icon: 'error'});
+        }
+      }));
+  }
+
+
+  SendMail() {
     this.service.contactMe(this.formModel.value).subscribe(
       (res: any) => {
-        if (res.succeeded) {
+        if (res.email != null) {
           this.formModel.reset();
           Swal.fire({
             title: 'Sent Successfully!',
@@ -60,12 +63,10 @@ export class ContactUsComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500});
         } else {
-          res.errors.forEach(element => {
-                  Swal.fire({
-                    title: 'Sent Failed',
-                    text: 'The server is temporarily unable to service your request. Please try again later!',
-                    icon: 'error'});
-          });
+            Swal.fire({
+              title: 'Sent Failed',
+              text: 'The server is temporarily unable to service your request. Please try again later!',
+              icon: 'error'});
         }
       },
       err => {

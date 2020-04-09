@@ -12,7 +12,7 @@ import { Navbar, DashboardSettings, Skill, Education, Experience,
   providedIn: 'root'
 })
 export class ApiService {
-  ReqToken: ReCaptchaRequest = { response: '', secret: 'SecrectKey' };
+
   constructor(private router: Router, private http: HttpClient) { }
 
   readonly BaseURI = 'https://api.askianoor.ir/api';
@@ -55,7 +55,7 @@ export class ApiService {
   // After login save token and other values(if any) in localStorage
   setUser(resp: LoginResponse) {
     localStorage.setItem('accessToken', resp.accessToken);
-    this.router.navigate(['/Admin/Dashboard']);
+    this.router.navigate(['/User/Dashboard']);
   }
 
   // Checking if token is set
@@ -127,12 +127,13 @@ export class ApiService {
   }
 
   // Verify The Token is Valid On the Server
-  CheckReCaptchaToken(response): Observable<ReCaptchaResponse> {
-    this.ReqToken.response = response;
+  CheckReCaptchaToken(token): Observable<ReCaptchaResponse> {
     return this.http
-      .post<ReCaptchaResponse>('https://www.google.com/recaptcha/api/siteverify?secret=' + this.ReqToken.secret +
-                                      '&response=' + this.ReqToken.response, null , this.httpReCaptchaOptions)
-                                      // httpReCaptchaOptions
-      .pipe(catchError(this.handleError));
+    .post<ReCaptchaResponse>(this.BaseURI + '/ReCaptcha?token=' + token, this.httpOptions)
+    .pipe(retry(2), catchError(this.handleError));
+    // return this.http
+    //   .post<ReCaptchaResponse>('https://www.google.com/recaptcha/api/siteverify?secret=' + this.ReqToken.secret +
+    //                                   '&response=' + this.ReqToken.response, null , this.httpReCaptchaOptions)
+    //   .pipe(catchError(this.handleError));
   }
 }

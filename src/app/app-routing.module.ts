@@ -58,23 +58,36 @@ const routes: Routes = [
     component: ContactUsComponent,
   },
   {
-    path: 'Admin',
+    path: 'User',
     canActivate: [AuthGuard],
-    component: AdminDashboardComponent,
+    component: DashboardComponent,
     children: [
       {
         path: '',
         children: [
-          { path: 'Educations', component: ManageEducationComponent },
-          { path: 'Experiences', component: ManageExperienceComponent },
-          { path: 'Navbars', component: ManageNavbarComponent },
-          { path: 'Portfolios', component: PortfolioComponent },
-          { path: 'Skills', component: SkillsComponent },
-          { path: 'Dashboard', component: DashboardSettingsComponent }
+          { path: 'Dashboard', component: DashboardComponent }
         ],
       }
     ]
   },
+  // {
+  //   path: 'Admin',
+  //   canActivate: [AuthGuard],
+  //   component: AdminDashboardComponent,
+  //   children: [
+  //     {
+  //       path: '',
+  //       children: [
+  //         { path: 'Educations', component: ManageEducationComponent },
+  //         { path: 'Experiences', component: ManageExperienceComponent },
+  //         { path: 'Navbars', component: ManageNavbarComponent },
+  //         { path: 'Portfolios', component: PortfolioComponent },
+  //         { path: 'Skills', component: SkillsComponent },
+  //         { path: 'Dashboard', component: DashboardSettingsComponent }
+  //       ],
+  //     }
+  //   ]
+  // },
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   { path: '**', redirectTo: '/Home' },
 ];

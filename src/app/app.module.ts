@@ -55,7 +55,7 @@ import { environment } from '../environments/environment';
     RecaptchaV3Module,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [NavbarComponent, {provide: RECAPTCHA_V3_SITE_KEY, useValue: 'SiteKey' }],
+  providers: [NavbarComponent, {provide: RECAPTCHA_V3_SITE_KEY, useValue: '6Le7yuQUAAAAANgyGRPfqd7ak8vxAfc6sc-ZtyHI' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

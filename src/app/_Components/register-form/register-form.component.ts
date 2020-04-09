@@ -48,10 +48,29 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
+    Swal.fire({
+      position: 'top-end',
+      icon: 'info',
+      title: 'Security Check & Registering Process Start ...',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true
+    });
     this.recaptchaV3Service.execute('onSubmit').subscribe((token) =>
-        this.service.CheckReCaptchaToken(token).subscribe(x => this.ReCaptchaToken = x));
+    this.service.CheckReCaptchaToken(token).subscribe(
+      (res: ReCaptchaResponse) => {
+        if (res.success) {
+          this.Register();
+        } else {
+            Swal.fire({
+              title: 'ReCaptcha Failed',
+              text: 'Please make sure your javascript is ON and try again, If you are not a Robot!',
+              icon: 'error'});
+        }
+      }));
+  }
 
-    if (this.ReCaptchaToken.success) {
+  Register() {
     this.formModel.value.Passwords = this.formModel.value.Passwords.Password;
     this.service.register(this.formModel.value).subscribe(
       (res: any) => {
@@ -92,11 +111,5 @@ export class RegisterFormComponent implements OnInit {
             icon: 'error'});
         }
       );
-    } else {
-      Swal.fire({
-        title: 'Registration Failed',
-        text:  'If you are no a robot, Please enable javascript and try again!',
-        icon: 'error'});
-      }
-  }
+    }
 }
