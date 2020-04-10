@@ -4,7 +4,7 @@
     </h1>
     <h4><small>{{PortfolioDesc}}</small></h4>
 </div>
-<div class="container row m-5">
+<div class="row m-5">
     <div class="col PortfolioCard" *ngFor="let item of Portfolios">
         <div class="card-container">
             <div class="card">
@@ -20,7 +20,7 @@
                             <h3 class="name">{{item.title}}</h3>
                             <p class="profession">{{item.subTitle}}</p>
 
-                            <p class="text-center">{{item.body}}</p>
+                            <p class="text-center text-justify">{{item.body}}</p>
                         </div>
                         <div class="footer">
                             <div class="rating">
@@ -39,35 +39,15 @@
                             <p class="text-center">{{item.technologies}}</p>
 
                             <div class="stats-container" [innerHTML]="item.backBody">
-                                <!-- <div class="stats">
-                                    <h4>235</h4>
-                                    <p>
-                                        Followers
-                                    </p>
-                                </div>
-                                <div class="stats">
-                                    <h4>114</h4>
-                                    <p>
-                                        Following
-                                    </p>
-                                </div>
-                                <div class="stats">
-                                    <h4>35</h4>
-                                    <p>
-                                        Projects
-                                    </p>
-                                </div> -->
                             </div> 
 
                         </div>
                     </div>
                     <div class="footer">
                         <div class="social-links text-center">
-                            <!-- <a href="#" class="facebook"><i class="fa fa-facebook fa-fw"></i></a> -->
                             <a href="{{item.projectLink}}" class="btn btn-success w-75" target="_blank"><i class="fa fa-product-hunt fa-fw"></i> Link to the Website</a>
-                            <!-- <a href="#" class="twitter"><i class="fa fa-twitter fa-fw"></i></a> -->
                         </div>
-                    </div>
+                     </div>
                 </div> <!-- end back panel -->
             </div> <!-- end card -->
         </div> <!-- end card-container -->

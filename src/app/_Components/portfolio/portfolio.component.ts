@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/_Service/api.service';
 import { Portfolio } from 'src/app/_Models/general';
 import Swal from 'sweetalert2';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-portfolio',
@@ -26,6 +27,9 @@ constructor(private apiService: ApiService) { }
     this.apiService.getPortfolios().subscribe(response => {
         if (response !== null ) {
           this.Portfolios = response;
+          response.forEach(e =>
+            this.Portfolios.push(e)
+            );
         }
     }, error => {
       Swal.fire({
