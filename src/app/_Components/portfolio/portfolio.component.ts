@@ -27,9 +27,6 @@ constructor(private apiService: ApiService) { }
     this.apiService.getPortfolios().subscribe(response => {
         if (response !== null ) {
           this.Portfolios = response;
-          response.forEach(e =>
-            this.Portfolios.push(e)
-            );
         }
     }, error => {
       Swal.fire({
