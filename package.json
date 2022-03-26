@@ -32,7 +32,7 @@
     "classlist.js": "^1.1.20150312",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "ng-recaptcha": "^5.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
